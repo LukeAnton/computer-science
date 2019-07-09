@@ -1,15 +1,34 @@
-function func(n) {
-  return (n * (n + 1)) / 2;
-}
+//
+//   func = n => (n * (n + 1)) / 2;
+//
+// // func = n => {
+// //   let total = 0;
+// //   for (let i = 1; i <= n; i++) {
+// //     total += i;
+// //   }
+// //   return total;
+// // };
+
+sortArray = a => {
+  let out = [];
+  const oddSort = a.filter(odd => odd % 2 !== 0).sort((x, y) => x - y);
+  for (let i = 0; i < a.length; i++) {
+    if (a[i] % 2 !== 0) {
+      out.push(null);
+    } else {
+      out.push(a[i]);
+    }
+  }
+  for (let o = 0; o < out.length; o++) {
+    if (out[o] === null) {
+      out[o] = oddSort.shift();
+    }
+  }
+  return out;
+};
 
 let t1 = performance.now();
-console.log(func(100000000000));
+console.log(sortArray([5, 3, 2, 8, 1, 4]));
 let t2 = performance.now();
 
 console.log(`Time Elapsed: ${(t2 - t1) / 1000} seconds.`);
-
-//Using built in timing functions to test run time of algorithms
-//t1 stores the time before the function is executed,
-//then call the function!
-// Once the function has finished execution the time is stored again in t2.
-// t2 - t2 is the time to execute.
